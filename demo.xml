@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="demo" default="all">
+  
+  
+  <property file="demo.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.tox/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
+  <path id="jdk.classpath.1.6">
+    <fileset dir="${jdk.home.1.6}">
+      <include name="bundle/Home/lib/deploy.jar"/>
+      <include name="bundle/Home/lib/dt.jar"/>
+      <include name="bundle/Home/lib/javaws.jar"/>
+      <include name="bundle/Home/lib/jce.jar"/>
+      <include name="bundle/Home/lib/jconsole.jar"/>
+      <include name="bundle/Home/lib/management-agent.jar"/>
+      <include name="bundle/Home/lib/plugin.jar"/>
+      <include name="bundle/Home/lib/sa-jdi.jar"/>
+      <include name="bundle/Classes/charsets.jar"/>
+      <include name="bundle/Classes/classes.jar"/>
+      <include name="bundle/Classes/jsse.jar"/>
+      <include name="bundle/Classes/ui.jar"/>
+      <include name="bundle/Home/lib/ext/apple_provider.jar"/>
+      <include name="bundle/Home/lib/ext/dnsns.jar"/>
+      <include name="bundle/Home/lib/ext/localedata.jar"/>
+      <include name="bundle/Home/lib/ext/sunjce_provider.jar"/>
+      <include name="bundle/Home/lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.6}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.6}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.6"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.java_ee_6-java_ee_6.classpath">
+    <pathelement location="${basedir}/lib/javax.annotation.jar"/>
+    <pathelement location="${basedir}/lib/javax.ejb.jar"/>
+    <pathelement location="${basedir}/lib/javax.jms.jar"/>
+    <pathelement location="${basedir}/lib/javax.persistence.jar"/>
+    <pathelement location="${basedir}/lib/javax.resource.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jstl.jar"/>
+    <pathelement location="${basedir}/lib/javax.transaction.jar"/>
+  </path>
+  
+  <path id="library.worldwind.classpath">
+    <pathelement location="${basedir}/../worldwind-2.0.0/gdal.jar"/>
+    <pathelement location="${basedir}/../worldwind-2.0.0/gluegen-rt.jar"/>
+    <pathelement location="${basedir}/../worldwind-2.0.0/jogl-all.jar"/>
+    <pathelement location="${basedir}/../worldwind-2.0.0/plugin.jar"/>
+    <pathelement location="${basedir}/../worldwind-2.0.0/worldwind.jar"/>
+    <pathelement location="${basedir}/../worldwind-2.0.0/worldwindx.jar"/>
+  </path>
+  
+  
+  <!-- Global Libraries -->
+  
+  <path id="library.bootstrap.classpath">
+    <pathelement location="/Users/tylerwhitlock/Library/Caches/IntelliJIdea14/extLibs/http_maxcdn.bootstrapcdn.com_bootstrap_3.3.4_js_bootstrap.js"/>
+  </path>
+  
+  <path id="library.gluegen-rt.classpath"/>
+  
+  <path id="library.jogl-all.classpath">
+    <pathelement location="/Users/tylerwhitlock/IdeaProjects/jogl-all.jar"/>
+  </path>
+  
+  <path id="library.jogl-all1.classpath">
+    <pathelement location="/Users/tylerwhitlock/Downloads/worldwind-2.0.0/plugin.jar"/>
+  </path>
+  
+  <path id="library.jquery.classpath">
+    <pathelement location="/Users/tylerwhitlock/Library/Caches/IntelliJIdea14/extLibs/http_ajax.googleapis.com_ajax_libs_jquery_2.1.3_jquery.js"/>
+  </path>
+  
+  <path id="library.worldwind.classpath">
+    <pathelement location="/Users/tylerwhitlock/Downloads/worldwind-2.0.0/worldwind.jar"/>
+  </path>
+  
+  <path id="library.worldwindlib.classpath">
+    <pathelement location="/Users/tylerwhitlock/Library/Caches/IntelliJIdea14/extLibs/http_worldwindserver.net_webworldwind_worldwindlib.js"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/.idea/module_demo.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.demo, clean.artifact.demo:web_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.demo" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.demo:web_exploded" value="${basedir}/../../demo/artifacts/demo_Web_exploded"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="clean.artifact.demo:web_exploded" description="clean demo:Web exploded artifact output">
+    <delete dir="${artifact.output.demo:web_exploded}"/>
+  </target>
+  
+  <target name="artifact.demo:web_exploded" depends="init.artifacts, compile.module.demo" description="Build &#39;demo:Web exploded&#39; artifact">
+    <mkdir dir="${artifact.output.demo:web_exploded}"/>
+    <copy todir="${artifact.output.demo:web_exploded}">
+      <fileset dir="${basedir}"/>
+    </copy>
+    <mkdir dir="${artifact.output.demo:web_exploded}/WEB-INF"/>
+    <copy file="${basedir}/WEB-INF/web.xml" tofile="${artifact.output.demo:web_exploded}/WEB-INF/web.xml"/>
+    <mkdir dir="${artifact.output.demo:web_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.demo:web_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.demo:web_exploded}/WEB-INF/classes">
+      <fileset dir="${demo.output.dir}"/>
+    </copy>
+    <mkdir dir="${artifact.output.demo:web_exploded}/WEB-INF/lib"/>
+    <copy file="${basedir}/../worldwind-2.0.0/plugin.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/plugin.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/worldwind.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/worldwind.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/worldwindx.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/worldwindx.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/jogl-all.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/jogl-all.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/plugin.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/plugin.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/gluegen-rt.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/gluegen-rt.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/gdal.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/gdal.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/gdal.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/gdal.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/jogl-all.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/jogl-all.jar"/>
+    <copy file="${basedir}/../worldwind-2.0.0/plugin.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/plugin.jar"/>
+    <copy file="${basedir}/../../IdeaProjects/jogl-all.jar" tofile="${artifact.output.demo:web_exploded}/WEB-INF/lib/jogl-all.jar"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.demo:web_exploded" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>
