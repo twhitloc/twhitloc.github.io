@@ -109,6 +109,7 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
 
             }
 
+            earthQuakes == updatedEarthQuakes;
             if (indexofpreviousRecent !=0)
             { //if the earthquakes are different check the latest tweet
 
