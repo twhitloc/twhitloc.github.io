@@ -241,5 +241,47 @@ define(['http://worldwindserver.net/webworldwind/worldwindlib.js','UGSDataRetrie
         }
     }
 
+    /*   -----------------------------------------------------------------------
+     @Description: The function gets earthquake object instance as an input
+     It parses all the relevant data that needs to be displayed in a paragraph format;
+
+     @Param: earthquake
+     its an earthquake object instance
+     @return:  timeString
+     its the string neded to display data
+
+     @NOTE: Additional data (such as nearest city names ) can be added to this function
+
+     --------------------------------------------------------------------------------*/
+    createPlaceMarks.prototype.getTweetText = function(earthquake) {
+        if(earthquake) {   // Only if earthquake is NOT a null string
+
+            var timeString = "<!>   " + earthquake.title + " ";
+
+            if (earthquake.ageDay > 0) {
+
+                timeString = timeString +  earthquake.ageDay +
+                    ((earthquake.ageDay > 1 ) ? "  days ago " : "  day ago ");
+
+            }
+            else if (earthquake.ageHours > 0) {
+                timeString = timeString + earthquake.ageHours +
+                    ((earthquake.ageHours > 1 ) ? "  hours ago " : "  hour ago ");
+            }
+            else if (earthquake.ageMinutes > 0) {
+                timeString = timeString + earthquake.ageMinutes +
+                    ((earthquake.ageMinutes > 1 ) ? "  minutes ago " : "  minute ago ");
+            }
+            else {
+                timeString = timeString + earthquake.ageSeconds +
+                    ((earthquake.ageSeconds > 1 ) ? "  seconds ago " : "  second ago ");
+            }
+            timeString += " Depth : " + earthquake.depth + " kilometers";
+
+            return timeString;
+        }
+    }
+
     return createPlaceMarks;
 });
+

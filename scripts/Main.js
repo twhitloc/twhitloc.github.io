@@ -13,8 +13,7 @@
 
 //Note: LayerManager.js is part of www API.
 
-define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSDataRetriever','EarthquakeLayer'],function(LayerManager,EarthQuakeRetrieval,createPlaceMarks)
-{
+define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSDataRetriever','EarthquakeLayer'],function(LayerManager,EarthQuakeRetrieval,createPlaceMarks) {
     'use strict';
 
     // instantiate the slider
@@ -53,22 +52,21 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
             wwd.addLayer(layers[l].layer);
         }
 
-        var layerManager= new LayerManager(wwd);
+        var layerManager = new LayerManager(wwd);
 
-        var earthQuakes =  new EarthQuakeRetrieval();
+        var earthQuakes = new EarthQuakeRetrieval();
         var placeMark = new createPlaceMarks(wwd, earthQuakes);
 
-
-
+        var params = {
+            status: placeMark.getTweetText(earthQuakes[0])
+        };
         var cb = new Codebird;
 
-        cb.setConsumerKey("VddGNUN9GWxbbKBoHDzhNRjjo","noC4s8BEKQCu4gZoXx2E13CYWzbA7gUjL9dM35IwJLtErfKTjb");
-        cb.setToken("3416857132-Fv8A8BIrbb7OGYoUODrfDb8bDvqhu1OBbusFzgj","24qSgQIOfVBWiSudRI1GX9EivqrneqOqlG3c42gdA20Ny");
+        cb.setConsumerKey("VddGNUN9GWxbbKBoHDzhNRjjo", "noC4s8BEKQCu4gZoXx2E13CYWzbA7gUjL9dM35IwJLtErfKTjb");
+        cb.setToken("3416857132-Fv8A8BIrbb7OGYoUODrfDb8bDvqhu1OBbusFzgj", "24qSgQIOfVBWiSudRI1GX9EivqrneqOqlG3c42gdA20Ny");
 
 
-        var params = {
-            status: placeMark.getInformationToDisplay(earthQuakes[0])
-        };
+
         cb.__call(
             "statuses_update",
             params,
@@ -77,6 +75,90 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
                 console.log(reply);
             }
         );
+
+
+
+
+
+
+
+        ///Timer function----------------
+        //
+        // window.setInterval(updateTimerEvent, 3000);
+        setInterval(function() {
+            updateTimerEvent(earthQuakes, placeMark, (cb = new Codebird()))
+       }, 30000 );
+
+
+        function updateTimerEvent(earthQuakes, placeMark, cb) { //every 5 minutes check earthquakes
+            'use strict';
+
+            var updatedEarthQuakes = new EarthQuakeRetrieval();
+
+            var indexofpreviousRecent =-1;
+            var i =0;
+
+            while(indexofpreviousRecent == -1) {
+                if ((earthQuakes[0].title != updatedEarthQuakes[i].title) && (earthQuakes[0].depth != updatedEarthQuakes[i].depth) && (earthQuakes[0].magnitude != updatedEarthQuakes[i].magnitude)) {
+                    i++
+                }
+                else
+                {
+                    indexofpreviousRecent = i;
+                }
+
+            }
+
+            if (indexofpreviousRecent !=0)
+            { //if the earthquakes are different check the latest tweet
+
+                cb.setConsumerKey("VddGNUN9GWxbbKBoHDzhNRjjo", "noC4s8BEKQCu4gZoXx2E13CYWzbA7gUjL9dM35IwJLtErfKTjb");
+                cb.setToken("3416857132-Fv8A8BIrbb7OGYoUODrfDb8bDvqhu1OBbusFzgj", "24qSgQIOfVBWiSudRI1GX9EivqrneqOqlG3c42gdA20Ny");
+
+                var params = {
+                    status: placeMark.getTweetText(earthQuakes[0])
+                };
+
+                cb.__call(
+                    "account_verifyCredentials",
+                    {},
+                    function (reply) {  //get the account and see what last tweet was
+                        var previousStatus = reply.status.text;
+
+
+                        earthQuakes = updatedEarthQuakes;
+                        for(var i = indexofpreviousRecent; i >= 0; i--) //for each new earthquake check to see if it was the last tweet
+                        {
+                            if (!(previousStatus.indexOf(updatedEarthQuakes[i].title) && previousStatus.indexOf("Depth : " + updatedEarthQuakes[i].depth + "kilometers") && (previousStatus.indexOf(" M " + updatedEarthQuakes[i].magnitude.toString()))))
+                            {
+                                var params = {
+                                status: placeMark.getTweetText(updatedEarthQuakes[i])
+                                };
+
+                                cb.__call(
+                                    "statuses_update",
+                                    params,
+                                    function (reply) {
+                                        //Currently we don't need to do anything with the reply received from twitter in JSON format.
+                                        console.log(reply);
+                                    }
+                                );
+
+                            }
+                        }
+
+                        console.log(reply); //reply from getting the user information
+                    }
+                );
+
+            }
+
+        }
+        //end of timer-----------
+
+
+
+
 
         slider.on('slideStop', function (arg) {
             var newearthquakelist = [];
@@ -93,8 +175,9 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
             }
             wwd.removeLayer(oldPlacemarks);
             new createPlaceMarks(wwd, newearthquakelist);
-
+            wwd.redraw();
         });
     }
 
-});
+
+})
