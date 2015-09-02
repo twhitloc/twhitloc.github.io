@@ -59,18 +59,20 @@ define(function() {
                 longitude: Number(geometry['coordinates'][0])
             };
 
+            if(earthquake.magnitude <2.0) continue;
+
             // How long ago the earthquake occurred in terms of days
             earthquake.ageDay = Math.floor(Math.abs((new Date().getTime()) - new Date(earthquake.date_time).getTime()) /
                 (24 * 60 * 60 * 1000));
-            //How long ago the earthquake occurred in terms of hours
+            //How long ago the earthquake occured in terms of hours
             earthquake.ageHours = Math.floor(Math.abs((new Date().getTime() - new Date(earthquake.date_time).getTime())
                 / (60 * 60 * 1000)));
 
-            //How long ago the earthquake occurred in terms of minutes
+            //How long ago the earthquake occured in terms of minutes
             earthquake.ageMinutes = Math.floor(Math.abs((new Date().getTime() - new Date(earthquake.date_time).getTime())
                 / ( 60 * 1000)));
 
-            //How long ago the earthquake occurred in terms of seconds
+            //How long ago the earthquake occured in terms of seconds
             earthquake.ageSeconds = Math.floor(Math.abs((new Date().getTime() - new Date(earthquake.date_time).getTime())
                 / ( 1000)));
 
@@ -82,5 +84,51 @@ define(function() {
         return dataReturn;
 
     };
+
+    /*   -----------------------------------------------------------------------
+     @Description: The function will return a color based on how old the earthquake is
+     and whether or not the color needs to be transparent.
+
+     @Param: time
+     Its the time of earthquake in milliseconds with reference to Zero Time ( 1-1-1970)
+
+     @Param:transparent
+     A boolean value indicating wether or not the color needs to be transparent.
+
+     @return:  Color
+     its the color object
+
+     --------------------------------------------------------------------------------*/
+
+
+    EarthQuakeRetrieval.prototype.getColor = function(time, transparent) {
+        if (!transparent) {
+
+            // If the earthquake happened less than 12 hours ago, then draw RED
+            if (new Date().getTime() - time < 1000 * 60 * 60 * 24)
+                return WorldWind.Color.RED;
+
+            //if earthquake happened less than 24 hours ago, then Draw Yello
+            else if (new Date().getTime() - time < 1000 * 60 * 60 * 48)
+                return WorldWind.Color.YELLOW;
+            else
+            // Else draw Green
+                return WorldWind.Color.GREEN;
+        }
+        else {
+            // If the earthquake happened less than 12 hours ago, then draw transparent RED
+            if (new Date().getTime() - time < 1000 * 60 * 60 * 24)
+                return new WorldWind.Color(1, 0, 0, 0.5);
+
+            //if earthquake happened less than 24 hours ago, then Draw transparent Yellow
+            else if (new Date().getTime() - time < 1000 * 60 * 60 * 48)
+                return new WorldWind.Color(1, 1, 0, 0.5);
+            else
+            // Else draw transparent Green
+                return new WorldWind.Color(0, 1, 0, 0.5);
+        }
+
+    };
+
     return EarthQuakeRetrieval;
 });
