@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a0178a4-7d30-4eca-9374-a12b2e861e28" name="Default" comment="" />
+    <list default="true" id="8a0178a4-7d30-4eca-9374-a12b2e861e28" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="twhitlock.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,17 +48,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/Main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.703704">
-              <caret line="242" column="34" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.561674">
+              <caret line="236" column="13" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="62" pinned="false" current-in-tab="true">
+      <file leaf-file-name="62" pinned="false" current-in-tab="false">
         <entry file="mock://vm:62">
           <provider selected="true" editor-type-id="vmFileEditor">
             <state />
@@ -122,10 +124,10 @@
         <option value="vm:41" />
         <option value="$PROJECT_DIR$/scripts/UGSDataRetriever.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/scripts/Main.js" />
         <option value="$PROJECT_DIR$/scripts/barGraphRepresentation.js" />
         <option value="$PROJECT_DIR$/scripts/EarthquakeLayer.js" />
         <option value="vm:62" />
+        <option value="$PROJECT_DIR$/scripts/Main.js" />
       </list>
     </option>
   </component>
@@ -357,17 +359,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/Main.js</url>
-          <line>240</line>
+          <line>225</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/Main.js</url>
-          <line>312</line>
+          <line>294</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/scripts/Main.js</url>
-          <line>331</line>
+          <line>312</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
@@ -523,14 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/UGSDataRetriever.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="http://worldwindserver.net/webworldwind/worldwindlib.js">
       <provider selected="true" editor-type-id="httpFileEditor">
         <state />
@@ -567,10 +561,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
+    <entry file="file://$PROJECT_DIR$/scripts/UGSDataRetriever.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.703704">
-          <caret line="242" column="34" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -579,6 +573,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.561674">
+          <caret line="236" column="13" selection-start-line="236" selection-start-column="13" selection-end-line="236" selection-end-column="13" />
           <folding />
         </state>
       </provider>
