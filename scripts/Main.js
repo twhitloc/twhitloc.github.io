@@ -64,17 +64,37 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
 
         cb.setConsumerKey("VddGNUN9GWxbbKBoHDzhNRjjo", "noC4s8BEKQCu4gZoXx2E13CYWzbA7gUjL9dM35IwJLtErfKTjb");
         cb.setToken("3416857132-Fv8A8BIrbb7OGYoUODrfDb8bDvqhu1OBbusFzgj", "24qSgQIOfVBWiSudRI1GX9EivqrneqOqlG3c42gdA20Ny");
-
+        var previousStatus;
 
 
         cb.__call(
-            "statuses_update",
-            params,
-            function (reply) {
-                //Currently we don't need to do anything with the reply received from twitter in JSON format.
-                console.log(reply);
+            "account_verifyCredentials",
+            {},
+            function (reply) {  //get the account and see what last tweet was
+                previousStatus = reply.status.text;
+                var sx = previousStatus.toString().indexOf("&lt;!&gt;");
+
+                if ((previousStatus.toString().indexOf(earthQuakes[0].title)<0) && (previousStatus.toString().indexOf("Depth : " + earthQuakes[0].depth + "kilometers")<0) && (previousStatus.toString().indexOf(" M " + earthQuakes[0].magnitude.toString())<0))
+                {
+                    sx = previousStatus.toString().indexOf(earthQuakes[0].title);
+                    sx = previousStatus.toString().indexOf("Depth : " + earthQuakes[0].depth + "kilometers");
+                    var params = {
+                        status: placeMark.getTweetText(earthQuakes[0])
+                    };
+
+
+                    cb.__call(
+                        "statuses_update",
+                        params,
+                        function (reply) {
+                            //Currently we don't need to do anything with the reply received from twitter in JSON format.
+                            console.log(reply);
+                        }
+                    );
+                }
             }
         );
+
 
 
 
@@ -87,7 +107,7 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
         // window.setInterval(updateTimerEvent, 3000);
         setInterval(function() {
             updateTimerEvent(earthQuakes, placeMark, (cb = new Codebird()))
-       }, 30000 );
+       }, 300000 );
 
 
         function updateTimerEvent(earthQuakes, placeMark, cb) { //every 5 minutes check earthquakes
@@ -124,13 +144,12 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
                     "account_verifyCredentials",
                     {},
                     function (reply) {  //get the account and see what last tweet was
-                        var previousStatus = reply.status.text;
-
+                         previousStatus = reply.status.text;
 
                         earthQuakes = updatedEarthQuakes;
                         for(var i = indexofpreviousRecent; i >= 0; i--) //for each new earthquake check to see if it was the last tweet
                         {
-                            if (!(previousStatus.indexOf(updatedEarthQuakes[i].title) && previousStatus.indexOf("Depth : " + updatedEarthQuakes[i].depth + "kilometers") && (previousStatus.indexOf(" M " + updatedEarthQuakes[i].magnitude.toString()))))
+                            if ((previousStatus.indexOf(updatedEarthQuakes[i].title)<0) && (previousStatus.indexOf("Depth : " + updatedEarthQuakes[i].depth + "kilometers")<0) && (previousStatus.indexOf(" M " + updatedEarthQuakes[i].magnitude.toString())<0))
                             {
                                 var params = {
                                 status: placeMark.getTweetText(updatedEarthQuakes[i])
@@ -148,6 +167,8 @@ define(['http://worldwindserver.net/webworldwind/examples/LayerManager.js','UGSD
                             }
                         }
 
+                         placeMark = new createPlaceMarks(wwd, earthQuakes);
+                        wwd.redraw();
                         console.log(reply); //reply from getting the user information
                     }
                 );
