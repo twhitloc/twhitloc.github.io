@@ -81,15 +81,15 @@ define(['http://worldwindserver.net/webworldwind/worldwindlib.js',
         ///
         ///Turn this into a function
 
-        makeTwitterCalls(cb, earthQuakes, previousStatus, placeMark);
+     //   makeTwitterCalls(cb, earthQuakes, previousStatus, placeMark);
 
 
         ///Timer function----------------
         //
         // window.setInterval(updateTimerEvent, 3000);
-        setInterval(function () {
-            updateTimerEvent(earthQuakes, placeMark, (cb = new Codebird()), previousStatus)
-        }, 300000);
+       // setInterval(function () {
+       //     updateTimerEvent(earthQuakes, placeMark, (cb = new Codebird()), previousStatus)
+       // }, 300000);
 
 
         //Function to perform on slider stop
