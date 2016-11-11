@@ -1,0 +1,49 @@
+.logo{
+    text-shadow: 0 2px 4px rgba(0,0,0,.7);
+}
+.masthead-brand {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+    color: #c9c9c9;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(255,255,255,1);
+    display: inline-block;
+}
+.masthead-nav > li + li {
+    margin-left: 20px;
+}
+.masthead-nav > li > a {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000; /* IE8 proofing */
+    color: rgba(144,144,144,.75);
+    border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+    background-color: transparent;
+    border-bottom-color: #303030;
+    border-bottom-color: rgba(144,144,144,1);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+    color: #708090;
+    border-bottom-color: #708090;
+
+}
+
+@media (min-width: 768px) {
+    .masthead-brand {
+        float: left;
+    }
+    .masthead-nav {
+        float: right;
+    }
+}
