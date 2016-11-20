@@ -34,6 +34,10 @@ body {
 body {
     color: #c9c9c9;
     background-image: url("../Images/subtle-pattern-9.jpg");
+    /*-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
     text-align: center;
 }
 
