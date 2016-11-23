@@ -79,6 +79,14 @@ body {
 .jumbotron-wrapper{
     background-image: url("../Images/subtle-pattern-4.jpg");
     padding: 50px;
+    border-radius: 15px;
+
+}
+
+.jumbotron{
+    border-radius: 15px;
+    border: thin solid;
+
 }
 
 

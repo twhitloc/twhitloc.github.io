@@ -4,14 +4,26 @@ body{
     color: #5a5a5a;
 }
 
-.content a{
-    color: #f9f9f9;
+table{
+    border-radius: 10px;
+    background-color: rgba(0,0,0, .15);
+    border-collapse: collapse;
 }
+
+
+
+.border{
+    border-bottom: 1px outset darkslategray;
+    border-top: 1px outset darkslategray;
+}
+
+
 
 .content{
     position: static;
     z-index: 10;
     margin-top: 175px;
+    margin-bottom: 30px;
 }
 
 
@@ -33,14 +45,22 @@ body{
     font-weight: 300;
     line-height: 1;
     letter-spacing: -1px;
+    color: #ffffff;
 }
 
 /* cell contents */
 .about-summary{
+    font-size: 18px;
+    line-height: 1.4;
+    width: 45%;
+    padding: 20px;
+    border-radius: 15px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     text-align: center;
+    word-wrap: break-word;
+    background-color: rgba(255,255,255,.85);
 }
 
 .about-summary img{
@@ -49,8 +69,22 @@ body{
 }
 
 .about-summary p{
+    color: #5a5a5a;
+    padding: 5px;
+    text-align: justify;
     margin-right: auto;
     margin-left: auto;
+}
+
+.background-list{
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: left;
+}
+
+.background-list td{
+    padding-left: 20px;
 }
 
 .featurette{
@@ -58,6 +92,20 @@ body{
     border-radius: 10px;
 }
 
+.featurette:hover{
+    background-color: rgba(0,0,0,.30);
+}
+
+.first-letter{
+    margin-left: 20px;
+    font-size: larger;
+    color: #999999;
+
+}
+
+.underline, h2, h4{
+    text-align: center;
+}
 
 .row{
     text-align: center;
@@ -66,6 +114,14 @@ body{
 .marketing{
     background-color: rgba(255,255,255,0.35);
     border-radius: 10px;
+}
+
+.lead{
+    color: lightslategray;
+}
+
+.languages{
+    color: slategrey;
 }
 
 
@@ -81,6 +137,17 @@ body{
 .site-wrapper-inner {
     display: table-cell;
     vertical-align: top;
+}
+
+.text-right{
+    padding-left: 20px;
+    float: right;
+    text-align: right;
+}
+
+
+.underline{
+    text-decoration: underline;
 }
 
 
